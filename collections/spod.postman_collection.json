@@ -1,0 +1,268 @@
+{
+  "info": {
+    "name": "SPOD (Spreadconnect) Fulfillment REST API",
+    "description": "Print-on-demand fulfillment API for SPOD (Spreadshirt Print-On-Demand), now branded Spreadconnect. Create articles from designs, place and manage orders, choose shipping types and track shipments, browse product types, check stock, and manage webhook subscriptions. Base URL: https://rest.spod.com (staging: https://rest.spreadconnect-staging.app). Every request must include the X-SPOD-ACCESS-TOKEN header with your account access token generated in the SPOD/Spreadconnect web application.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "X-SPOD-ACCESS-TOKEN", "type": "string" },
+      { "key": "value", "value": "{{accessToken}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://rest.spod.com", "type": "string" },
+    { "key": "accessToken", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Common",
+      "item": [
+        {
+          "name": "Verify access token",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/authentication", "host": ["{{baseUrl}}"], "path": ["authentication"] },
+            "description": "Confirms the supplied access token is valid."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Articles",
+      "item": [
+        {
+          "name": "List articles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/articles?limit=50&offset=0", "host": ["{{baseUrl}}"], "path": ["articles"], "query": [ { "key": "limit", "value": "50" }, { "key": "offset", "value": "0" } ] },
+            "description": "Retrieves all articles, paginated."
+          }
+        },
+        {
+          "name": "Create an article",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"title\": \"My Article\",\n  \"description\": \"Custom tee\",\n  \"productTypeId\": 210,\n  \"configurations\": []\n}" },
+            "url": { "raw": "{{baseUrl}}/articles", "host": ["{{baseUrl}}"], "path": ["articles"] },
+            "description": "Creates a new customizable article by combining a design with a product type and view."
+          }
+        },
+        {
+          "name": "Get an article",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/articles/:articleId", "host": ["{{baseUrl}}"], "path": ["articles", ":articleId"], "variable": [ { "key": "articleId", "value": "" } ] },
+            "description": "Fetches a specific article by ID."
+          }
+        },
+        {
+          "name": "Delete an article",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/articles/:articleId", "host": ["{{baseUrl}}"], "path": ["articles", ":articleId"], "variable": [ { "key": "articleId", "value": "" } ] },
+            "description": "Removes an article."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Create an order",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"orderItems\": [],\n  \"shipping\": {},\n  \"billingAddress\": {},\n  \"state\": \"CONFIRMED\"\n}" },
+            "url": { "raw": "{{baseUrl}}/orders", "host": ["{{baseUrl}}"], "path": ["orders"] },
+            "description": "Creates a new order. Simple flow: send preferred shipping type and state CONFIRMED. Controlled flow: create with mandatory fields, then set shipping type and confirm."
+          }
+        },
+        {
+          "name": "Get an order",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/orders/:orderId", "host": ["{{baseUrl}}"], "path": ["orders", ":orderId"], "variable": [ { "key": "orderId", "value": "" } ] },
+            "description": "Retrieves order information."
+          }
+        },
+        {
+          "name": "Update an order",
+          "request": {
+            "method": "PUT",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"orderItems\": [],\n  \"shipping\": {},\n  \"billingAddress\": {}\n}" },
+            "url": { "raw": "{{baseUrl}}/orders/:orderId", "host": ["{{baseUrl}}"], "path": ["orders", ":orderId"], "variable": [ { "key": "orderId", "value": "" } ] },
+            "description": "Modifies an order that has not yet been confirmed."
+          }
+        },
+        {
+          "name": "Confirm an order",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/orders/:orderId/confirm", "host": ["{{baseUrl}}"], "path": ["orders", ":orderId", "confirm"], "variable": [ { "key": "orderId", "value": "" } ] },
+            "description": "Confirms an order so it enters production."
+          }
+        },
+        {
+          "name": "Cancel an order",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/orders/:orderId/cancel", "host": ["{{baseUrl}}"], "path": ["orders", ":orderId", "cancel"], "variable": [ { "key": "orderId", "value": "" } ] },
+            "description": "Attempts to cancel an order while it has not yet entered production."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Shipping",
+      "item": [
+        {
+          "name": "Get available shipping types",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/orders/:orderId/shippingTypes", "host": ["{{baseUrl}}"], "path": ["orders", ":orderId", "shippingTypes"], "variable": [ { "key": "orderId", "value": "" } ] },
+            "description": "Lists shipping types available for an order with price and delivery estimate."
+          }
+        },
+        {
+          "name": "Set shipping type",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"shippingType\": 1\n}" },
+            "url": { "raw": "{{baseUrl}}/orders/:orderId/shippingType", "host": ["{{baseUrl}}"], "path": ["orders", ":orderId", "shippingType"], "variable": [ { "key": "orderId", "value": "" } ] },
+            "description": "Sets the preferred shipping type on an order."
+          }
+        },
+        {
+          "name": "Get shipments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/orders/:orderId/shipments", "host": ["{{baseUrl}}"], "path": ["orders", ":orderId", "shipments"], "variable": [ { "key": "orderId", "value": "" } ] },
+            "description": "Retrieves shipment records and tracking details for an order."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Product Types",
+      "item": [
+        {
+          "name": "List product types",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/productTypes", "host": ["{{baseUrl}}"], "path": ["productTypes"] },
+            "description": "Lists the catalog of available product types (article types)."
+          }
+        },
+        {
+          "name": "Get a product type",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/productTypes/:productTypeId", "host": ["{{baseUrl}}"], "path": ["productTypes", ":productTypeId"], "variable": [ { "key": "productTypeId", "value": "" } ] },
+            "description": "Retrieves a product type with sizes, colors, views, and printable areas."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Stock",
+      "item": [
+        {
+          "name": "List stock for all variants",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/stock", "host": ["{{baseUrl}}"], "path": ["stock"] },
+            "description": "Retrieves inventory availability across all product variants."
+          }
+        },
+        {
+          "name": "Get stock for a SKU",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/stock/:sku", "host": ["{{baseUrl}}"], "path": ["stock", ":sku"], "variable": [ { "key": "sku", "value": "" } ] },
+            "description": "Retrieves stock for a specific variant SKU."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Subscriptions",
+      "item": [
+        {
+          "name": "List subscriptions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/subscriptions", "host": ["{{baseUrl}}"], "path": ["subscriptions"] },
+            "description": "Lists active webhook subscriptions."
+          }
+        },
+        {
+          "name": "Create a subscription",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"eventType\": \"Order.processed\",\n  \"url\": \"https://example.com/webhooks/spod\",\n  \"secret\": \"my-webhook-secret\"\n}" },
+            "url": { "raw": "{{baseUrl}}/subscriptions", "host": ["{{baseUrl}}"], "path": ["subscriptions"] },
+            "description": "Registers a webhook subscription. Notifications arrive via POST and must be acknowledged with a 202, a response within 8 seconds, and payload [accepted]."
+          }
+        },
+        {
+          "name": "Delete a subscription",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/subscriptions/:subscriptionId", "host": ["{{baseUrl}}"], "path": ["subscriptions", ":subscriptionId"], "variable": [ { "key": "subscriptionId", "value": "" } ] },
+            "description": "Removes a webhook subscription."
+          }
+        },
+        {
+          "name": "Simulate Order.cancelled event",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/orders/:orderId/simulate/order-cancelled", "host": ["{{baseUrl}}"], "path": ["orders", ":orderId", "simulate", "order-cancelled"], "variable": [ { "key": "orderId", "value": "" } ] },
+            "description": "Triggers a test Order.cancelled webhook notification (test/staging use)."
+          }
+        },
+        {
+          "name": "Simulate Order.processed event",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/orders/:orderId/simulate/order-processed", "host": ["{{baseUrl}}"], "path": ["orders", ":orderId", "simulate", "order-processed"], "variable": [ { "key": "orderId", "value": "" } ] },
+            "description": "Triggers a test Order.processed webhook notification (test/staging use)."
+          }
+        },
+        {
+          "name": "Simulate Shipment.sent event",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/orders/:orderId/simulate/shipment-sent", "host": ["{{baseUrl}}"], "path": ["orders", ":orderId", "simulate", "shipment-sent"], "variable": [ { "key": "orderId", "value": "" } ] },
+            "description": "Triggers a test Shipment.sent webhook notification (test/staging use)."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+aid: spod
+url: https://raw.githubusercontent.com/api-evangelist/spod/refs/heads/main/apis.yml
+name: SPOD
+kind: company
+description: SPOD (Spreadshirt Print-On-Demand), now branded Spreadconnect, is the
+  print-on-demand and dropshipping fulfillment service from Spreadshirt. Its REST
+  API (base https://rest.spod.com) lets any shop system create customizable articles
+  from designs, place and manage orders, choose shipping types and track shipments,
+  browse the catalog of 250+ product types, check stock, and subscribe to webhook
+  notifications for article, order, and shipment events. Authentication is a per-account
+  API access token sent in the X-SPOD-ACCESS-TOKEN header. There are no setup or
+  monthly fees; sellers are invoiced per fulfilled order (base product price plus
+  print and shipping costs).
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Print on Demand
+- POD
+- Dropshipping
+- Fulfillment
+- E-commerce
+- Merchandise
+- Spreadshirt
+- Spreadconnect
+created: '2026-07-11'
+modified: '2026-07-11'
+specificationVersion: '0.19'
+apis:
+- aid: spod:spod-articles-api
+  name: SPOD Articles API
+  tags:
+  - Articles
+  - Products
+  - Designs
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://rest.spod.com/docs/
+  baseURL: https://rest.spod.com
+  properties:
+  - url: https://rest.spod.com/docs/
+    type: Documentation
+  - url: https://rest.spod.com/docs/
+    type: APIReference
+  - url: openapi/spod-openapi.yml
+    type: OpenAPI
+  - url: collections/spod.postman_collection.json
+    type: PostmanCollection
+  - url: collections/spod.opencollection.json
+    type: OpenCollection
+  description: Create, list, retrieve, and delete customizable articles - the sellable
+    products built by placing a design onto a product type and view. Each article
+    carries its variants (SKUs), print configurations, and point-of-sale metadata.
+- aid: spod:spod-orders-api
+  name: SPOD Orders API
+  tags:
+  - Orders
+  - Fulfillment
+  - Checkout
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://rest.spod.com/docs/
+  baseURL: https://rest.spod.com
+  properties:
+  - url: https://rest.spod.com/docs/
+    type: Documentation
+  - url: https://rest.spod.com/docs/
+    type: APIReference
+  - url: openapi/spod-openapi.yml
+    type: OpenAPI
+  - url: collections/spod.postman_collection.json
+    type: PostmanCollection
+  - url: collections/spod.opencollection.json
+    type: OpenCollection
+  description: Place and manage print-on-demand orders. Create an order (simple
+    single-request flow or a controlled create/update/confirm flow), retrieve or
+    update order details, confirm an order for production, and attempt cancellation
+    while it is still cancelable.
+- aid: spod:spod-shipping-api
+  name: SPOD Shipping API
+  tags:
+  - Shipping
+  - Shipments
+  - Tracking
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://rest.spod.com/docs/
+  baseURL: https://rest.spod.com
+  properties:
+  - url: https://rest.spod.com/docs/
+    type: Documentation
+  - url: https://rest.spod.com/docs/
+    type: APIReference
+  - url: openapi/spod-openapi.yml
+    type: OpenAPI
+  - url: collections/spod.postman_collection.json
+    type: PostmanCollection
+  - url: collections/spod.opencollection.json
+    type: OpenCollection
+  description: List the available shipping types for an order with their prices and
+    delivery estimates, set the preferred shipping type on an order, and retrieve
+    shipment records with tracking information once an order is dispatched from a US
+    or EU facility.
+- aid: spod:spod-product-types-api
+  name: SPOD Product Types API
+  tags:
+  - Product Types
+  - Article Types
+  - Catalog
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://rest.spod.com/docs/
+  baseURL: https://rest.spod.com
+  properties:
+  - url: https://rest.spod.com/docs/
+    type: Documentation
+  - url: https://rest.spod.com/docs/
+    type: APIReference
+  - url: openapi/spod-openapi.yml
+    type: OpenAPI
+  - url: collections/spod.postman_collection.json
+    type: PostmanCollection
+  - url: collections/spod.opencollection.json
+    type: OpenCollection
+  description: Browse the SPOD catalog of 250+ product types (article types) - blank
+    products such as T-shirts, hoodies, and accessories. Retrieve a product type's
+    sizes, colors, views, printable areas, and configuration needed to build an
+    article.
+- aid: spod:spod-stock-api
+  name: SPOD Stock API
+  tags:
+  - Stock
+  - Inventory
+  - Availability
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://rest.spod.com/docs/
+  baseURL: https://rest.spod.com
+  properties:
+  - url: https://rest.spod.com/docs/
+    type: Documentation
+  - url: https://rest.spod.com/docs/
+    type: APIReference
+  - url: openapi/spod-openapi.yml
+    type: OpenAPI
+  - url: collections/spod.postman_collection.json
+    type: PostmanCollection
+  - url: collections/spod.opencollection.json
+    type: OpenCollection
+  description: Check inventory availability across product variants. Retrieve stock
+    for all variants or for a specific SKU so you can surface availability in your
+    shop before an article is ordered.
+- aid: spod:spod-subscriptions-api
+  name: SPOD Subscriptions and Webhooks API
+  tags:
+  - Subscriptions
+  - Webhooks
+  - Events
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://rest.spod.com/docs/
+  baseURL: https://rest.spod.com
+  properties:
+  - url: https://rest.spod.com/docs/
+    type: Documentation
+  - url: https://rest.spod.com/docs/
+    type: APIReference
+  - url: openapi/spod-openapi.yml
+    type: OpenAPI
+  - url: collections/spod.postman_collection.json
+    type: PostmanCollection
+  - url: collections/spod.opencollection.json
+    type: OpenCollection
+  description: Register webhook subscriptions to be notified via POST about Article,
+    Order, and Shipment state changes. List and delete subscriptions, verify
+    authenticity with the X-SPRD-SIGNATURE SHA256 HMAC header, and use simulate
+    endpoints to trigger test events. Notifications follow an at-least-once delivery
+    model and must be acknowledged.
+common:
+- type: GitHubOrganization
+  url: https://github.com/SP0D
+- type: LinkedIn
+  url: https://www.linkedin.com/company/spod-spreadshirt-print-on-demand
+- type: Website
+  url: https://www.spod.com
+- type: Documentation
+  url: https://rest.spod.com/docs/
+- type: Plans
+  url: plans/spod-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/spod-rate-limits.yml
+- type: FinOps
+  url: finops/spod-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

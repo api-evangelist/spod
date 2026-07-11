@@ -1,0 +1,93 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: SPOD
+providerId: spod
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Print on Demand
+- POD
+- Dropshipping
+- Fulfillment
+- Plans
+description: >-
+  SPOD (Spreadconnect) has no subscription, setup, or monthly platform fee, and
+  the REST API itself is free to use with an account access token. Sellers are
+  invoiced per fulfilled order. The order price is calculated as base product
+  price plus print cost plus shipping cost plus tax, and is independent of the
+  retail price the seller charges their own customers. The first print area is
+  included; additional print areas add a per-area fee, and Flex/Flock printing
+  adds a one-time per-order fee. Base product prices vary by product type
+  (roughly $6-$26). Exact per-product and per-shipping-tier rates are not
+  reconciled here.
+notes: >-
+  SPOD rebranded to Spreadconnect. Verify current base product prices, print-area
+  fees, and shipping tiers on the SPOD/Spreadconnect help center during
+  reconciliation. Prices differ between US and EU fulfillment.
+sources:
+- https://www.spod.com/
+- https://rest.spod.com/docs/
+- https://faq.spreadconnect.app/hc/en-us/articles/360020691160-How-is-your-order-price-calculated
+- https://faq.spreadconnect.app/hc/en-us/articles/360020789020-How-much-does-Spreadconnect-cost-me
+plans:
+- id: spod-pay-per-order
+  name: Pay Per Order (No Monthly Fee)
+  type: usage
+  description: >-
+    No subscription, setup, or monthly fee. Free access to the full REST API,
+    250+ product types, and unlimited article creation with no warehousing cost.
+    Sellers are invoiced only when an order is fulfilled, priced as base product
+    price + print cost + shipping cost + tax.
+  entries:
+  - label: Base Product Price
+    name: base_product_price
+    type: usage
+    metric: order_item
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per item, varies by product type (approx $6-$26; see catalog)
+    userMultiplied: false
+  - label: Additional Print Area
+    name: additional_print_area
+    type: usage
+    metric: print_area
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: first print area included; each additional area approx $5 / 5 EUR
+    userMultiplied: false
+  - label: Flex/Flock Printing Surcharge
+    name: flex_flock_surcharge
+    type: usage
+    metric: order
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: one-time approx $2.50 / 2.50 EUR per order using Flex, Special Flex, or Flock
+    userMultiplied: false
+  - label: Shipping
+    name: shipping
+    type: usage
+    metric: order
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: based on order value; varies by US/EU facility and shipping type
+    userMultiplied: false
+  elements:
+  - name: Full REST API Access
+  - name: 250+ Product Types
+  - name: Unlimited Articles
+  - name: No Warehousing Cost
+  - name: US and EU Fulfillment
+  - name: Webhook Subscriptions
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

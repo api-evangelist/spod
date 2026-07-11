@@ -1,0 +1,100 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: SPOD
+providerId: spod
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Print on Demand
+- POD
+- Fulfillment
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of SPOD (Spreadconnect) spend. There is no subscription, setup, or
+  monthly platform fee and the REST API itself is free; cost is incurred only
+  when orders are fulfilled. Each order is billed as base product price + print
+  cost (first area included, additional areas and Flex/Flock surcharge extra) +
+  shipping + tax. Because SPOD invoices the seller independently of the retail
+  price charged to end customers, unit economics per order are the primary lever
+  for margin management.
+notes: >-
+  Per-product and per-shipping-tier rates are not reconciled here; verify on the
+  SPOD/Spreadconnect help center. US and EU fulfillment carry different product
+  and shipping prices.
+sources:
+- https://www.spod.com/
+- https://rest.spod.com/docs/
+- https://faq.spreadconnect.app/hc/en-us/articles/360020691160-How-is-your-order-price-calculated
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: SPOD
+serviceCategory: Print on Demand and Fulfillment
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Tax
+focusColumns:
+  ServiceName: SPOD Print-On-Demand Fulfillment
+  ServiceCategory: Print on Demand and Fulfillment
+  ProviderName: SPOD
+  PublisherName: SPOD
+  InvoiceIssuerName: sprd.net AG (Spreadshirt)
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: base_product
+  description: Base product price per fulfilled order item, varying by product type.
+  unit: order_item
+  aggregation: sum
+  dimensions:
+  - account
+  - product_type
+  - facility
+- name: print_area
+  description: Additional print areas beyond the first included area, billed per area.
+  unit: print_area
+  aggregation: sum
+  dimensions:
+  - account
+  - order
+- name: print_technique_surcharge
+  description: One-time per-order surcharge for Flex, Special Flex, or Flock printing.
+  unit: order
+  aggregation: sum
+  dimensions:
+  - account
+  - order
+- name: shipping
+  description: Shipping cost per order, based on order value and fulfillment facility.
+  unit: order
+  aggregation: sum
+  dimensions:
+  - account
+  - order
+  - facility
+principles:
+- name: Visibility
+  description: Track cost per order broken down into base product, print areas, print-technique surcharge, and shipping so margin per sale is clear.
+- name: Allocation
+  description: Attribute order costs to shops/points of sale and product types to see which lines carry fulfillment cost.
+- name: Optimization
+  description: Limit orders to a single print area where possible, prefer DTG/DTF (no per-area cost) over Flex/Flock, and choose product types and shipping types that protect margin.
+- name: Accountability
+  description: Reconcile monthly SPOD invoices against orders placed via the API; ensure retail pricing consistently exceeds SPOD order cost plus tax.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,95 @@
+aid: spod
+name: SPOD
+review:
+  question: Does SPOD expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-11'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. SPOD's (Spreadconnect's) public API
+    surface is request/response REST over HTTPS (base https://rest.spod.com).
+    SPOD does push asynchronous state changes, but it does so via outbound
+    webhook notifications (server-to-endpoint HTTP POST), not via a server-push
+    streaming transport on SPOD's own API. Webhooks are ordinary HTTP callbacks,
+    not WebSocket or SSE, so there is no realtime streaming channel on SPOD's API
+    to model as AsyncAPI under current scope.
+findings:
+  summary: |
+    SPOD (Spreadshirt Print-On-Demand, now branded Spreadconnect) does not
+    publish a documented public WebSocket API. The SPOD fulfillment REST API is
+    served from https://rest.spod.com (staging https://rest.spreadconnect-staging.app)
+    and is pure request/response REST over HTTPS. Authentication is a per-account
+    API access token sent in the X-SPOD-ACCESS-TOKEN header. Asynchronous updates
+    (Article added, Order processed, Order cancelled, Shipment sent) are delivered
+    by outbound webhook subscriptions - SPOD makes an HTTP POST to a URL you
+    register, which the consumer acknowledges with a 202 and payload [accepted]
+    within 8 seconds. Webhook authenticity is verified with the X-SPRD-SIGNATURE
+    header, a Base64-encoded SHA256 HMAC over the request body. No WebSocket
+    (ws:// or wss://) or SSE endpoint is documented anywhere in SPOD's API.
+  openSource: |
+    SPOD's REST API definition (README + openapi.yaml) is published publicly on
+    GitHub at github.com/SP0D/rest-api, alongside open-source e-commerce
+    integrations (Magento, WooCommerce, Shopware). The API itself is a hosted,
+    proprietary fulfillment service operated by Spreadshirt (sprd.net AG); it is
+    not self-hostable.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://rest.spod.com
+      documented: true
+      note: Full fulfillment API - articles, orders, shipping, product types, stock, subscriptions. Auth via X-SPOD-ACCESS-TOKEN header.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: Outbound HTTP POST notifications for Article/Order/Shipment events; at-least-once delivery, acknowledged with 202 [accepted], signed with X-SPRD-SIGNATURE (Base64 SHA256 HMAC). Server-to-endpoint HTTP, not WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in SPOD's REST API or developer documentation as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://rest.spod.com/authentication
+    - GET    https://rest.spod.com/articles
+    - POST   https://rest.spod.com/articles
+    - GET    https://rest.spod.com/articles/{articleId}
+    - DELETE https://rest.spod.com/articles/{articleId}
+    - POST   https://rest.spod.com/orders
+    - GET    https://rest.spod.com/orders/{orderId}
+    - PUT    https://rest.spod.com/orders/{orderId}
+    - POST   https://rest.spod.com/orders/{orderId}/confirm
+    - POST   https://rest.spod.com/orders/{orderId}/cancel
+    - GET    https://rest.spod.com/orders/{orderId}/shippingTypes
+    - POST   https://rest.spod.com/orders/{orderId}/shippingType
+    - GET    https://rest.spod.com/orders/{orderId}/shipments
+    - GET    https://rest.spod.com/productTypes
+    - GET    https://rest.spod.com/productTypes/{productTypeId}
+    - GET    https://rest.spod.com/stock
+    - GET    https://rest.spod.com/stock/{sku}
+    - GET    https://rest.spod.com/subscriptions
+    - POST   https://rest.spod.com/subscriptions
+    - DELETE https://rest.spod.com/subscriptions/{subscriptionId}
+    - POST   https://rest.spod.com/orders/{orderId}/simulate/order-cancelled
+    - POST   https://rest.spod.com/orders/{orderId}/simulate/order-processed
+    - POST   https://rest.spod.com/orders/{orderId}/simulate/shipment-sent
+sources:
+  - url: https://rest.spod.com/docs/
+    type: Documentation
+    note: SPOD (Spreadconnect) REST API reference. Base https://rest.spod.com, X-SPOD-ACCESS-TOKEN header auth. All REST; no WebSocket.
+  - url: https://github.com/SP0D/rest-api
+    type: SourceCode
+    note: Public README + openapi.yaml (SPOD fulfillment service REST-API). servers = https://rest.spod.com; apiKey header X-SPOD-ACCESS-TOKEN.
+  - url: https://www.spod.com/integrations/api
+    type: Documentation
+    note: Spreadconnect API overview - create/manage products, place orders, automate fulfillment. Redirects to spreadshop.com/spreadconnect-api.
+  - url: https://faq.spreadconnect.app/hc/en-us/articles/360020691160-How-is-your-order-price-calculated
+    type: Documentation
+    note: Order price = base product + print cost + shipping + tax; no monthly/setup fee.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists on SPOD's API. The public API is
+    request/response REST (https://rest.spod.com) plus outbound webhook
+    subscriptions. No AsyncAPI document was created because SPOD's asynchronous
+    updates are ordinary HTTP webhook callbacks, not a server-push streaming
+    transport (WebSocket or SSE) on SPOD's own API.

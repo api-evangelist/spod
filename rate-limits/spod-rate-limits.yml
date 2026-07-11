@@ -1,0 +1,52 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: SPOD
+providerId: spod
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Print on Demand
+- POD
+- Fulfillment
+- Rate Limiting
+- Quotas
+description: >-
+  The SPOD (Spreadconnect) REST API applies a per-integration request rate limit
+  of approximately 60 requests per minute. Requests beyond the limit are rejected
+  with an HTTP 429 response and should be retried with backoff. Webhook
+  notifications from SPOD to your endpoint follow an at-least-once delivery model
+  with an increasing retry delay when acknowledgements are missed, rather than a
+  fixed client-side rate.
+notes: >-
+  The documented figure of ~60 requests/minute per integration should be
+  re-verified against the live SPOD/Spreadconnect API docs during reconciliation,
+  as published limits can change. Design endpoint upload constraints (PNG,
+  size-limited) apply separately to design assets.
+sources:
+- https://rest.spod.com/docs/
+- https://www.spod.com/integrations/api
+responseCodes:
+  throttled: 429
+limits:
+- name: API Requests
+  scope: integration
+  metric: requests
+  limit: ~60 per minute
+  notes: Per-integration request rate limit; exceeding it returns HTTP 429.
+- name: Webhook Notification Acknowledgement
+  scope: subscription
+  metric: seconds
+  limit: 8 second response window
+  notes: Notifications must be acknowledged within 8 seconds with a 202 and payload [accepted], or they are retried.
+policies:
+- name: Backoff and Retry
+  description: On HTTP 429, clients should back off and retry with increasing delay. Honor any Retry-After guidance.
+- name: At-Least-Once Delivery
+  description: Webhook notifications are guaranteed to be delivered at least once; the retry delay increases over time to avoid flooding the receiver.
+- name: Idempotent Acknowledgement
+  description: Because notifications can be delivered more than once, receivers should handle duplicate events idempotently.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
