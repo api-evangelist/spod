@@ -169,6 +169,12 @@ apis:
     endpoints to trigger test events. Notifications follow an at-least-once delivery
     model and must be acknowledged.
 common:
+- type: VulnerabilityDisclosure
+  url: security/spod-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/spod-domain-security.yml
+- type: Authentication
+  url: authentication/spod-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/SP0D
 - type: LinkedIn

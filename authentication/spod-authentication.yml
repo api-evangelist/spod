@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/spod-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: access_token
+  type: apiKey
+  in: header
+  parameter: X-SPOD-ACCESS-TOKEN
+  description: Per-account API access token generated in the SPOD / Spreadconnect web application.
+    Send it as a header on every request.
+  sources:
+  - openapi/spod-openapi.yml
