@@ -1,0 +1,121 @@
+openapi: 3.0.3
+info:
+  title: SPOD (Spreadconnect) Fulfillment REST Articles Orders API
+  version: '1.0'
+  description: REST API for SPOD (Spreadshirt Print-On-Demand), now branded Spreadconnect. Create customizable articles from designs, place and manage print-on-demand orders, choose shipping types and track shipments, browse the catalog of product types, check stock, and subscribe to webhook notifications for article, order, and shipment events. All requests are authenticated with a per-account API access token sent in the X-SPOD-ACCESS-TOKEN header. This document is an API Evangelist reference grounded in SPOD's published OpenAPI and developer documentation; verify request/response schemas against the live docs before production use.
+  contact:
+    name: SPOD
+    url: https://www.spod.com
+    email: business@spod.com
+  termsOfService: https://faq.spod.com/hc/en-us/articles/360020630280
+servers:
+- url: https://rest.spod.com
+  description: Production
+- url: https://rest.spreadconnect-staging.app
+  description: Staging / test environment
+security:
+- access_token: []
+tags:
+- name: Orders
+paths:
+  /orders:
+    post:
+      tags:
+      - Orders
+      operationId: createOrder
+      summary: Create an order
+      description: Create a new order. In the simple flow you send a preferred shipping type and state CONFIRMED in one request; in the controlled flow you create the order with mandatory fields, then set the shipping type and confirm it in later requests.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '201':
+          description: The created order.
+  /orders/{orderId}:
+    get:
+      tags:
+      - Orders
+      operationId: getOrder
+      summary: Get an order
+      parameters:
+      - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: The requested order.
+        '404':
+          description: Order not found.
+    put:
+      tags:
+      - Orders
+      operationId: updateOrder
+      summary: Update an order
+      parameters:
+      - $ref: '#/components/parameters/OrderId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '200':
+          description: The updated order.
+  /orders/{orderId}/confirm:
+    post:
+      tags:
+      - Orders
+      operationId: confirmOrder
+      summary: Confirm an order
+      description: Confirm an order so it enters production. A confirmed order can no longer be edited.
+      parameters:
+      - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: The confirmed order.
+  /orders/{orderId}/cancel:
+    post:
+      tags:
+      - Orders
+      operationId: cancelOrder
+      summary: Cancel an order
+      description: Attempt to cancel an order. Cancellation only succeeds while the order has not yet entered production.
+      parameters:
+      - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: Cancellation result.
+components:
+  schemas:
+    OrderRequest:
+      type: object
+      description: Order payload. Refer to the live SPOD docs for the full schema.
+      properties:
+        orderItems:
+          type: array
+          items:
+            type: object
+        shipping:
+          type: object
+        billingAddress:
+          type: object
+        state:
+          type: string
+          enum:
+          - NEW
+          - CONFIRMED
+  parameters:
+    OrderId:
+      name: orderId
+      in: path
+      required: true
+      schema:
+        type: integer
+  securitySchemes:
+    access_token:
+      type: apiKey
+      in: header
+      name: X-SPOD-ACCESS-TOKEN
+      description: Per-account API access token generated in the SPOD / Spreadconnect web application. Send it as a header on every request.

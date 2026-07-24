@@ -1,0 +1,79 @@
+openapi: 3.0.3
+info:
+  title: SPOD (Spreadconnect) Fulfillment REST Articles Shipping API
+  version: '1.0'
+  description: REST API for SPOD (Spreadshirt Print-On-Demand), now branded Spreadconnect. Create customizable articles from designs, place and manage print-on-demand orders, choose shipping types and track shipments, browse the catalog of product types, check stock, and subscribe to webhook notifications for article, order, and shipment events. All requests are authenticated with a per-account API access token sent in the X-SPOD-ACCESS-TOKEN header. This document is an API Evangelist reference grounded in SPOD's published OpenAPI and developer documentation; verify request/response schemas against the live docs before production use.
+  contact:
+    name: SPOD
+    url: https://www.spod.com
+    email: business@spod.com
+  termsOfService: https://faq.spod.com/hc/en-us/articles/360020630280
+servers:
+- url: https://rest.spod.com
+  description: Production
+- url: https://rest.spreadconnect-staging.app
+  description: Staging / test environment
+security:
+- access_token: []
+tags:
+- name: Shipping
+paths:
+  /orders/{orderId}/shippingTypes:
+    get:
+      tags:
+      - Shipping
+      operationId: getShippingTypes
+      summary: Get available shipping types for an order
+      description: List the shipping types available for the order, including price and estimated delivery time.
+      parameters:
+      - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: Available shipping types.
+  /orders/{orderId}/shippingType:
+    post:
+      tags:
+      - Shipping
+      operationId: setShippingType
+      summary: Set the shipping type for an order
+      parameters:
+      - $ref: '#/components/parameters/OrderId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                shippingType:
+                  type: integer
+                  description: The identifier of the chosen shipping type.
+      responses:
+        '200':
+          description: The order with the shipping type set.
+  /orders/{orderId}/shipments:
+    get:
+      tags:
+      - Shipping
+      operationId: getShipments
+      summary: Get shipments for an order
+      description: Retrieve the shipment records for an order, including carrier and tracking details once dispatched.
+      parameters:
+      - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: Shipment records for the order.
+components:
+  parameters:
+    OrderId:
+      name: orderId
+      in: path
+      required: true
+      schema:
+        type: integer
+  securitySchemes:
+    access_token:
+      type: apiKey
+      in: header
+      name: X-SPOD-ACCESS-TOKEN
+      description: Per-account API access token generated in the SPOD / Spreadconnect web application. Send it as a header on every request.

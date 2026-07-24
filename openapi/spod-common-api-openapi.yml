@@ -1,0 +1,39 @@
+openapi: 3.0.3
+info:
+  title: SPOD (Spreadconnect) Fulfillment REST Articles Common API
+  version: '1.0'
+  description: REST API for SPOD (Spreadshirt Print-On-Demand), now branded Spreadconnect. Create customizable articles from designs, place and manage print-on-demand orders, choose shipping types and track shipments, browse the catalog of product types, check stock, and subscribe to webhook notifications for article, order, and shipment events. All requests are authenticated with a per-account API access token sent in the X-SPOD-ACCESS-TOKEN header. This document is an API Evangelist reference grounded in SPOD's published OpenAPI and developer documentation; verify request/response schemas against the live docs before production use.
+  contact:
+    name: SPOD
+    url: https://www.spod.com
+    email: business@spod.com
+  termsOfService: https://faq.spod.com/hc/en-us/articles/360020630280
+servers:
+- url: https://rest.spod.com
+  description: Production
+- url: https://rest.spreadconnect-staging.app
+  description: Staging / test environment
+security:
+- access_token: []
+tags:
+- name: Common
+paths:
+  /authentication:
+    get:
+      tags:
+      - Common
+      operationId: authenticationInfo
+      summary: Verify the API access token
+      description: Returns authentication information for the supplied access token, used to confirm credentials are valid.
+      responses:
+        '200':
+          description: Authentication information.
+        '401':
+          description: Missing or invalid access token.
+components:
+  securitySchemes:
+    access_token:
+      type: apiKey
+      in: header
+      name: X-SPOD-ACCESS-TOKEN
+      description: Per-account API access token generated in the SPOD / Spreadconnect web application. Send it as a header on every request.
