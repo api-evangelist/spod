@@ -11,7 +11,20 @@ description: SPOD (Spreadshirt Print-On-Demand), now branded Spreadconnect, is t
   API access token sent in the X-SPOD-ACCESS-TOKEN header. There are no setup or
   monthly fees; sellers are invoiced per fulfilled order (base product price plus
   print and shipping costs).
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/spod.png
 tags:
 - Print on Demand
 - POD
@@ -27,147 +40,130 @@ specificationVersion: '0.19'
 apis:
 - aid: spod:spod-articles-api
   name: SPOD Articles API
+  description: The Articles API from SPOD — 2 operation(s) for articles.
+  humanURL: https://rest.spod.com/docs/
+  baseURL: https://rest.spod.com
   tags:
   - Articles
-  - Products
-  - Designs
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/spod-articles-api-openapi.yml
+  - type: Documentation
+    url: https://rest.spod.com/docs/
+  - type: APIReference
+    url: https://rest.spod.com/docs/
+  - type: PostmanCollection
+    url: collections/spod.postman_collection.json
+  - type: OpenCollection
+    url: collections/spod.opencollection.json
+- aid: spod:spod-common-api
+  name: SPOD Common API
+  description: The Common API from SPOD — 1 operation(s) for common.
   humanURL: https://rest.spod.com/docs/
   baseURL: https://rest.spod.com
+  tags:
+  - Common
   properties:
-  - url: https://rest.spod.com/docs/
-    type: Documentation
-  - url: https://rest.spod.com/docs/
-    type: APIReference
-  - url: openapi/spod-openapi.yml
-    type: OpenAPI
-  - url: collections/spod.postman_collection.json
-    type: PostmanCollection
-  - url: collections/spod.opencollection.json
-    type: OpenCollection
-  description: Create, list, retrieve, and delete customizable articles - the sellable
-    products built by placing a design onto a product type and view. Each article
-    carries its variants (SKUs), print configurations, and point-of-sale metadata.
+  - type: OpenAPI
+    url: openapi/spod-common-api-openapi.yml
+  - type: Documentation
+    url: https://rest.spod.com/docs/
+  - type: APIReference
+    url: https://rest.spod.com/docs/
+  - type: PostmanCollection
+    url: collections/spod.postman_collection.json
+  - type: OpenCollection
+    url: collections/spod.opencollection.json
 - aid: spod:spod-orders-api
   name: SPOD Orders API
+  description: The Orders API from SPOD — 4 operation(s) for orders.
+  humanURL: https://rest.spod.com/docs/
+  baseURL: https://rest.spod.com
   tags:
   - Orders
-  - Fulfillment
-  - Checkout
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://rest.spod.com/docs/
-  baseURL: https://rest.spod.com
   properties:
-  - url: https://rest.spod.com/docs/
-    type: Documentation
-  - url: https://rest.spod.com/docs/
-    type: APIReference
-  - url: openapi/spod-openapi.yml
-    type: OpenAPI
-  - url: collections/spod.postman_collection.json
-    type: PostmanCollection
-  - url: collections/spod.opencollection.json
-    type: OpenCollection
-  description: Place and manage print-on-demand orders. Create an order (simple
-    single-request flow or a controlled create/update/confirm flow), retrieve or
-    update order details, confirm an order for production, and attempt cancellation
-    while it is still cancelable.
-- aid: spod:spod-shipping-api
-  name: SPOD Shipping API
-  tags:
-  - Shipping
-  - Shipments
-  - Tracking
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://rest.spod.com/docs/
-  baseURL: https://rest.spod.com
-  properties:
-  - url: https://rest.spod.com/docs/
-    type: Documentation
-  - url: https://rest.spod.com/docs/
-    type: APIReference
-  - url: openapi/spod-openapi.yml
-    type: OpenAPI
-  - url: collections/spod.postman_collection.json
-    type: PostmanCollection
-  - url: collections/spod.opencollection.json
-    type: OpenCollection
-  description: List the available shipping types for an order with their prices and
-    delivery estimates, set the preferred shipping type on an order, and retrieve
-    shipment records with tracking information once an order is dispatched from a US
-    or EU facility.
+  - type: OpenAPI
+    url: openapi/spod-orders-api-openapi.yml
+  - type: Documentation
+    url: https://rest.spod.com/docs/
+  - type: APIReference
+    url: https://rest.spod.com/docs/
+  - type: PostmanCollection
+    url: collections/spod.postman_collection.json
+  - type: OpenCollection
+    url: collections/spod.opencollection.json
 - aid: spod:spod-product-types-api
   name: SPOD Product Types API
+  description: The Product Types API from SPOD — 2 operation(s) for product types.
+  humanURL: https://rest.spod.com/docs/
+  baseURL: https://rest.spod.com
   tags:
   - Product Types
-  - Article Types
-  - Catalog
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/spod-product-types-api-openapi.yml
+  - type: Documentation
+    url: https://rest.spod.com/docs/
+  - type: APIReference
+    url: https://rest.spod.com/docs/
+  - type: PostmanCollection
+    url: collections/spod.postman_collection.json
+  - type: OpenCollection
+    url: collections/spod.opencollection.json
+- aid: spod:spod-shipping-api
+  name: SPOD Shipping API
+  description: The Shipping API from SPOD — 3 operation(s) for shipping.
   humanURL: https://rest.spod.com/docs/
   baseURL: https://rest.spod.com
+  tags:
+  - Shipping
   properties:
-  - url: https://rest.spod.com/docs/
-    type: Documentation
-  - url: https://rest.spod.com/docs/
-    type: APIReference
-  - url: openapi/spod-openapi.yml
-    type: OpenAPI
-  - url: collections/spod.postman_collection.json
-    type: PostmanCollection
-  - url: collections/spod.opencollection.json
-    type: OpenCollection
-  description: Browse the SPOD catalog of 250+ product types (article types) - blank
-    products such as T-shirts, hoodies, and accessories. Retrieve a product type's
-    sizes, colors, views, printable areas, and configuration needed to build an
-    article.
+  - type: OpenAPI
+    url: openapi/spod-shipping-api-openapi.yml
+  - type: Documentation
+    url: https://rest.spod.com/docs/
+  - type: APIReference
+    url: https://rest.spod.com/docs/
+  - type: PostmanCollection
+    url: collections/spod.postman_collection.json
+  - type: OpenCollection
+    url: collections/spod.opencollection.json
 - aid: spod:spod-stock-api
   name: SPOD Stock API
+  description: The Stock API from SPOD — 2 operation(s) for stock.
+  humanURL: https://rest.spod.com/docs/
+  baseURL: https://rest.spod.com
   tags:
   - Stock
-  - Inventory
-  - Availability
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/spod-stock-api-openapi.yml
+  - type: Documentation
+    url: https://rest.spod.com/docs/
+  - type: APIReference
+    url: https://rest.spod.com/docs/
+  - type: PostmanCollection
+    url: collections/spod.postman_collection.json
+  - type: OpenCollection
+    url: collections/spod.opencollection.json
+- aid: spod:spod-subscriptions-api
+  name: SPOD Subscriptions API
+  description: The Subscriptions API from SPOD — 5 operation(s) for subscriptions.
   humanURL: https://rest.spod.com/docs/
   baseURL: https://rest.spod.com
-  properties:
-  - url: https://rest.spod.com/docs/
-    type: Documentation
-  - url: https://rest.spod.com/docs/
-    type: APIReference
-  - url: openapi/spod-openapi.yml
-    type: OpenAPI
-  - url: collections/spod.postman_collection.json
-    type: PostmanCollection
-  - url: collections/spod.opencollection.json
-    type: OpenCollection
-  description: Check inventory availability across product variants. Retrieve stock
-    for all variants or for a specific SKU so you can surface availability in your
-    shop before an article is ordered.
-- aid: spod:spod-subscriptions-api
-  name: SPOD Subscriptions and Webhooks API
   tags:
   - Subscriptions
-  - Webhooks
-  - Events
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://rest.spod.com/docs/
-  baseURL: https://rest.spod.com
   properties:
-  - url: https://rest.spod.com/docs/
-    type: Documentation
-  - url: https://rest.spod.com/docs/
-    type: APIReference
-  - url: openapi/spod-openapi.yml
-    type: OpenAPI
-  - url: collections/spod.postman_collection.json
-    type: PostmanCollection
-  - url: collections/spod.opencollection.json
-    type: OpenCollection
-  description: Register webhook subscriptions to be notified via POST about Article,
-    Order, and Shipment state changes. List and delete subscriptions, verify
-    authenticity with the X-SPRD-SIGNATURE SHA256 HMAC header, and use simulate
-    endpoints to trigger test events. Notifications follow an at-least-once delivery
-    model and must be acknowledged.
+  - type: OpenAPI
+    url: openapi/spod-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://rest.spod.com/docs/
+  - type: APIReference
+    url: https://rest.spod.com/docs/
+  - type: PostmanCollection
+    url: collections/spod.postman_collection.json
+  - type: OpenCollection
+    url: collections/spod.opencollection.json
 common:
 - type: AgenticAccess
   url: agentic-access/spod-agentic-access.yml
