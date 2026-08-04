@@ -1,0 +1,26 @@
+{
+  "provider": "spod",
+  "sources": [
+    "spod-articles-api-openapi.yml",
+    "spod-common-api-openapi.yml",
+    "spod-orders-api-openapi.yml",
+    "spod-product-types-api-openapi.yml",
+    "spod-shipping-api-openapi.yml",
+    "spod-stock-api-openapi.yml",
+    "spod-subscriptions-api-openapi.yml"
+  ],
+  "outputs": [
+    "spod-articles-api-openapi.yml",
+    "spod-common-api-openapi.yml",
+    "spod-orders-api-openapi.yml",
+    "spod-product-types-api-openapi.yml",
+    "spod-shipping-api-openapi.yml",
+    "spod-stock-api-openapi.yml",
+    "spod-subscriptions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
