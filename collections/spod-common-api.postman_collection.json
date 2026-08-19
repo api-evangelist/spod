@@ -1,0 +1,156 @@
+{
+  "item": [
+    {
+      "id": "4a8e6487-9f39-41da-b452-ccbe81ac136e",
+      "name": "Common",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "38c507c9-1457-40f7-bd00-cc457b4e67cc",
+          "name": "Verify the API access token",
+          "request": {
+            "name": "Verify the API access token",
+            "description": {
+              "content": "Returns authentication information for the supplied access token, used to confirm credentials are valid.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "authentication"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32d528c8-8a4b-412f-80d5-29e0f624986c",
+              "name": "Authentication information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "authentication"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-SPOD-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9158336d-a372-436b-ad86-ed9c46908578",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "authentication"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-SPOD-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest.spod.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-SPOD-ACCESS-TOKEN"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ed07c8f5-cce5-4995-a117-109ff0eb48c6",
+    "name": "SPOD (Spreadconnect) Fulfillment REST Articles Common API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for SPOD (Spreadshirt Print-On-Demand), now branded Spreadconnect. Create customizable articles from designs, place and manage print-on-demand orders, choose shipping types and track shipments, browse the catalog of product types, check stock, and subscribe to webhook notifications for article, order, and shipment events. All requests are authenticated with a per-account API access token sent in the X-SPOD-ACCESS-TOKEN header. This document is an API Evangelist reference grounded in SPOD's published OpenAPI and developer documentation; verify request/response schemas against the live docs before production use.\n\nContact Support:\n Name: SPOD\n Email: business@spod.com",
+      "type": "text/plain"
+    }
+  }
+}

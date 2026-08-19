@@ -1,0 +1,251 @@
+{
+  "item": [
+    {
+      "id": "6eb989d9-7542-414a-ba52-0fc7791bad02",
+      "name": "Product Types",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8e481b9d-e64a-4414-bc4e-66c625e22a0f",
+          "name": "List product types",
+          "request": {
+            "name": "List product types",
+            "description": {
+              "content": "List the catalog of available product types (article types) that articles can be built from.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "productTypes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "56f5bd29-06d5-44f6-96a6-bc1adacc7128",
+              "name": "A list of product types.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "productTypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-SPOD-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5317dba3-09cc-4dd9-b252-ecabfeb4db2b",
+          "name": "Get a product type",
+          "request": {
+            "name": "Get a product type",
+            "description": {
+              "content": "Retrieve a product type with its sizes, colors, views, and printable areas.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "productTypes",
+                ":productTypeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "productTypeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a827adfc-61a3-4dab-a5ac-f501c3fa592f",
+              "name": "The requested product type.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "productTypes",
+                    ":productTypeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "productTypeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-SPOD-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "24681ef1-51d2-429e-a0d8-2b97e3f431d2",
+              "name": "Product type not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "productTypes",
+                    ":productTypeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "productTypeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-SPOD-ACCESS-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest.spod.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-SPOD-ACCESS-TOKEN"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3b42f4ac-0951-4beb-8dd7-65de1bea7014",
+    "name": "SPOD (Spreadconnect) Fulfillment REST Articles Product Types API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for SPOD (Spreadshirt Print-On-Demand), now branded Spreadconnect. Create customizable articles from designs, place and manage print-on-demand orders, choose shipping types and track shipments, browse the catalog of product types, check stock, and subscribe to webhook notifications for article, order, and shipment events. All requests are authenticated with a per-account API access token sent in the X-SPOD-ACCESS-TOKEN header. This document is an API Evangelist reference grounded in SPOD's published OpenAPI and developer documentation; verify request/response schemas against the live docs before production use.\n\nContact Support:\n Name: SPOD\n Email: business@spod.com",
+      "type": "text/plain"
+    }
+  }
+}

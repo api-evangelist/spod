@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SPOD (Spreadconnect) Fulfillment REST Articles Stock API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-SPOD-ACCESS-TOKEN",
+      "value": "{{X-SPOD-ACCESS-TOKEN}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stock",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List stock for all variants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.spod.com/stock"
+          },
+          "docs": "Retrieve inventory availability across all product variants."
+        },
+        {
+          "info": {
+            "name": "Get stock for a SKU",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.spod.com/stock/:sku",
+            "params": [
+              {
+                "name": "sku",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get stock for a SKU"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

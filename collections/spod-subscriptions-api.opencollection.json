@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SPOD (Spreadconnect) Fulfillment REST Articles Subscriptions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-SPOD-ACCESS-TOKEN",
+      "value": "{{X-SPOD-ACCESS-TOKEN}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.spod.com/subscriptions"
+          },
+          "docs": "List the account's active webhook subscriptions."
+        },
+        {
+          "info": {
+            "name": "Create a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.spod.com/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a webhook subscription. Notifications are delivered by POST following an at-least-once model and must be acknowledged with a 202 status, a response within 8 seconds, and the payload [accepted]. If a secret is set, notifications carry an X-SPRD-SIGNATURE header (a Base64 SHA256 HMAC over the request body) for authenticity verification."
+        },
+        {
+          "info": {
+            "name": "Delete a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rest.spod.com/subscriptions/:subscriptionId",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a subscription"
+        },
+        {
+          "info": {
+            "name": "Simulate an Order.cancelled event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.spod.com/orders/:orderId/simulate/order-cancelled",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Trigger a test Order.cancelled webhook notification for the given order (test/staging use)."
+        },
+        {
+          "info": {
+            "name": "Simulate an Order.processed event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.spod.com/orders/:orderId/simulate/order-processed",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Trigger a test Order.processed webhook notification for the given order (test/staging use)."
+        },
+        {
+          "info": {
+            "name": "Simulate a Shipment.sent event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.spod.com/orders/:orderId/simulate/shipment-sent",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Trigger a test Shipment.sent webhook notification for the given order (test/staging use)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
