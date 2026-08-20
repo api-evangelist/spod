@@ -30,6 +30,15 @@ tags:
 - POD
 - Dropshipping
 - Fulfillment
+- E-Commerce
+- Merchandise
+- Spreadshirt
+- Spreadconnect
+tags_raw:
+- Print on Demand
+- POD
+- Dropshipping
+- Fulfillment
 - E-commerce
 - Merchandise
 - Spreadshirt
@@ -80,6 +89,8 @@ apis:
   humanURL: https://rest.spod.com/docs/
   baseURL: https://rest.spod.com
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -152,6 +163,8 @@ apis:
   humanURL: https://rest.spod.com/docs/
   baseURL: https://rest.spod.com
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
