@@ -11,6 +11,18 @@ description: SPOD (Spreadshirt Print-On-Demand), now branded Spreadconnect, is t
   API access token sent in the X-SPOD-ACCESS-TOKEN header. There are no setup or
   monthly fees; sellers are invoiced per fulfilled order (base product price plus
   print and shipping costs).
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
