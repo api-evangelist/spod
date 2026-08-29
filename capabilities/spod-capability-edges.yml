@@ -1,0 +1,33 @@
+slug: spod
+provider: SPOD
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Transportation & Logistics
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Orders
+  spec_file: spod-orders-api-openapi.yml
+  capability_id: BC-520.40
+  capability_id_l1: BC-520
+  capability_name: Order Fulfilment Management
+  confidence: 0.8
+  evidence: POST /orders  createOrder  Create an order ... 'place and manage print-on-demand orders'
+  reason: Order creation, confirmation and cancellation against a fulfilment provider — order fulfilment
+    orchestration.
+- tag: Shipping
+  spec_file: spod-shipping-api-openapi.yml
+  capability_id: BC-520.50
+  capability_id_l1: BC-520
+  capability_name: Logistics Operations Management
+  confidence: 0.75
+  evidence: GET /orders/{orderId}/shippingTypes  Get available shipping types for an order ... GET /orders/{orderId}/shipments
+  reason: Selection of shipping service and retrieval of shipments for an order — outbound logistics/shipment
+    execution within the supply chain.

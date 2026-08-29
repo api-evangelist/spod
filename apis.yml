@@ -190,6 +190,9 @@ apis:
   - type: OpenCollection
     url: collections/spod.opencollection.json
 common:
+- type: CapabilityMap
+  url: capabilities/spod-capability-edges.yml
+  name: SPOD Business Capability Map
 - type: AgenticAccess
   url: agentic-access/spod-agentic-access.yml
 - type: VulnerabilityDisclosure
