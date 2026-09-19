@@ -159,6 +159,8 @@ apis:
   humanURL: https://rest.spod.com/docs/
   baseURL: https://rest.spod.com
   tags:
+  - Stocks
+  tags_raw:
   - Stock
   properties:
   - type: OpenAPI
