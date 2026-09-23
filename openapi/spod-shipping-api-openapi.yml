@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: SPOD (Spreadconnect) Fulfillment REST Articles Shipping API
+  title: SPOD (Spreadconnect) Fulfillment REST Shipping API
   version: '1.0'
-  description: REST API for SPOD (Spreadshirt Print-On-Demand), now branded Spreadconnect. Create customizable articles from designs, place and manage print-on-demand orders, choose shipping types and track shipments, browse the catalog of product types, check stock, and subscribe to webhook notifications for article, order, and shipment events. All requests are authenticated with a per-account API access token sent in the X-SPOD-ACCESS-TOKEN header. This document is an API Evangelist reference grounded in SPOD's published OpenAPI and developer documentation; verify request/response schemas against the live docs before production use.
+  description: REST API for SPOD (Spreadshirt Print-On-Demand), now branded Spreadconnect.
   contact:
     name: SPOD
     url: https://www.spod.com

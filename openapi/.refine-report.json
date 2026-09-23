@@ -1,13 +1,7 @@
 {
   "provider": "spod",
   "sources": [
-    "spod-articles-api-openapi.yml",
-    "spod-common-api-openapi.yml",
-    "spod-orders-api-openapi.yml",
-    "spod-product-types-api-openapi.yml",
-    "spod-shipping-api-openapi.yml",
-    "spod-stock-api-openapi.yml",
-    "spod-subscriptions-api-openapi.yml"
+    "_original/spod-openapi.yml"
   ],
   "outputs": [
     "spod-articles-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "spod-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "spod-articles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spod-common-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spod-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spod-product-types-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spod-shipping-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spod-stock-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spod-subscriptions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
