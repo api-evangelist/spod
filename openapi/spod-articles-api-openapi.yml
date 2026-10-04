@@ -78,13 +78,6 @@ paths:
         '204':
           description: Article deleted.
 components:
-  parameters:
-    ArticleId:
-      name: articleId
-      in: path
-      required: true
-      schema:
-        type: integer
   schemas:
     ArticleRequest:
       type: object
@@ -100,6 +93,13 @@ components:
           type: array
           items:
             type: object
+  parameters:
+    ArticleId:
+      name: articleId
+      in: path
+      required: true
+      schema:
+        type: integer
   securitySchemes:
     access_token:
       type: apiKey

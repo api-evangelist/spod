@@ -95,6 +95,13 @@ paths:
         '200':
           description: Simulated event dispatched.
 components:
+  parameters:
+    OrderId:
+      name: orderId
+      in: path
+      required: true
+      schema:
+        type: integer
   schemas:
     SubscriptionRequest:
       type: object
@@ -110,13 +117,6 @@ components:
         secret:
           type: string
           description: Optional secret used to compute the X-SPRD-SIGNATURE HMAC.
-  parameters:
-    OrderId:
-      name: orderId
-      in: path
-      required: true
-      schema:
-        type: integer
   securitySchemes:
     access_token:
       type: apiKey
