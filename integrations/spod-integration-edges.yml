@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/spod/integrations
+- https://n8n.io/integrations/spod/
+- https://composio.dev/toolkits/spod
+- https://monid.ai/tools/spod
+checked:
+- https://composio.dev/toolkits/spod
+- https://monid.ai/tools/spod
+- https://n8n.io/integrations/spod/
+- https://zapier.com/apps/spod/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
