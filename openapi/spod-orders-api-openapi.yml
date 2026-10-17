@@ -88,13 +88,6 @@ paths:
         '200':
           description: Cancellation result.
 components:
-  parameters:
-    OrderId:
-      name: orderId
-      in: path
-      required: true
-      schema:
-        type: integer
   schemas:
     OrderRequest:
       type: object
@@ -113,6 +106,13 @@ components:
           enum:
           - NEW
           - CONFIRMED
+  parameters:
+    OrderId:
+      name: orderId
+      in: path
+      required: true
+      schema:
+        type: integer
   securitySchemes:
     access_token:
       type: apiKey
