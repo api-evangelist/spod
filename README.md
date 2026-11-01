@@ -1,4 +1,4 @@
-# SPOD (spod)
+# SPOD
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,167 +64,130 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-SPOD (Spreadshirt Print-On-Demand), now branded **Spreadconnect**, is the print-on-demand and dropshipping fulfillment service from Spreadshirt (sprd.net AG). Its REST API - base `https://rest.spod.com` - lets any shop system create customizable articles from designs, place and manage orders, choose shipping types and track shipments, browse a catalog of 250+ product types, check stock, and subscribe to webhook notifications for article, order, and shipment events. SPOD prints and ships from US and EU facilities, typically producing 95% of orders within 48 hours.
+SPOD (Spreadshirt Print-On-Demand), now branded Spreadconnect, is the print-on-demand and dropshipping fulfillment service from Spreadshirt. Its REST API (base https://rest.spod.com) lets any shop system create customizable articles from designs, place and manage orders, choose shipping types and track shipments, browse the catalog of 250+ product types, check stock, and subscribe to webhook notifications for article, order, and shipment events. Authentication is a per-account API access token sent in the X-SPOD-ACCESS-TOKEN header. There are no setup or monthly fees; sellers are invoiced per fulfilled order (base product price plus print and shipping costs).
 
-**Access model:** The API is public and free to use with a per-account **API access token** generated in the SPOD/Spreadconnect web application and sent in the `X-SPOD-ACCESS-TOKEN` header on every request. There is **no subscription, setup, or monthly platform fee** - sellers are invoiced only per fulfilled order (base product price + print cost + shipping + tax), and that invoice is independent of the retail price the seller charges their own customers. This is an honest, verify-before-production reference: the endpoint list is grounded in SPOD's published OpenAPI (`github.com/SP0D/rest-api`) and developer docs (`rest.spod.com/docs`), while request/response schemas should be confirmed against the live documentation. A staging environment is available at `https://rest.spreadconnect-staging.app`.
+**Areas:** Print on Demand · POD · Dropshipping · Fulfillment · E-Commerce · Merchandise · Spreadshirt · Spreadconnect
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/spod/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/spod/refs/heads/main/apis.yml)
+## SPOD on APIs.io
 
-## Tags
+Everything profiled for SPOD is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/spod/](https://apis.io/providers/spod/)** — or go straight to one of the APIs or properties below.
 
-- Print on Demand
-- POD
-- Dropshipping
-- Fulfillment
-- E-commerce
-- Merchandise
-- Spreadshirt
-- Spreadconnect
+### APIs (7)
 
-## Timestamps
+- [SPOD Articles API](https://apis.io/apis/spod/spod-articles-api/) — The Articles API from SPOD — 2 operation(s) for articles.
+- [SPOD Common API](https://apis.io/apis/spod/spod-common-api/) — The Common API from SPOD — 1 operation(s) for common.
+- [SPOD Orders API](https://apis.io/apis/spod/spod-orders-api/) — The Orders API from SPOD — 4 operation(s) for orders.
+- [SPOD Product Types API](https://apis.io/apis/spod/spod-product-types-api/) — The Product Types API from SPOD — 2 operation(s) for product types.
+- [SPOD Shipping API](https://apis.io/apis/spod/spod-shipping-api/) — The Shipping API from SPOD — 3 operation(s) for shipping.
+- [SPOD Stock API](https://apis.io/apis/spod/spod-stock-api/) — The Stock API from SPOD — 2 operation(s) for stock.
+- [SPOD Subscriptions API](https://apis.io/apis/spod/spod-subscriptions-api/) — The Subscriptions API from SPOD — 5 operation(s) for subscriptions.
 
-- **Created:** 2026-07-11
-- **Modified:** 2026-07-11
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### SPOD Articles API
+#### Agentic access (1)
 
-Create, list, retrieve, and delete customizable articles - the sellable products built by placing a design onto a product type and view. Each article carries its variants (SKUs), print configurations, and point-of-sale metadata.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://rest.spod.com/docs/](https://rest.spod.com/docs/)
-- **Base URL:** `https://rest.spod.com`
+- [Spod Agentic Access](https://apis.io/agentic-access/spod/spod-agentic-access/)
 
-#### Tags
+#### Collections (8)
 
-- Articles
-- Products
-- Designs
+Postman and Open Collection request collections.
 
-#### Properties
+- [SPOD (Spreadconnect) Fulfillment REST API](https://apis.io/collections/spod/open-spod/)
+- [SPOD (Spreadconnect) Fulfillment REST Articles API](https://apis.io/collections/spod/open-spod-articles-api/)
+- [SPOD (Spreadconnect) Fulfillment REST Articles Common API](https://apis.io/collections/spod/open-spod-common-api/)
+- [SPOD (Spreadconnect) Fulfillment REST Articles Orders API](https://apis.io/collections/spod/open-spod-orders-api/)
+- [SPOD (Spreadconnect) Fulfillment REST Articles Product Types API](https://apis.io/collections/spod/open-spod-product-types-api/)
+- [SPOD (Spreadconnect) Fulfillment REST Articles Shipping API](https://apis.io/collections/spod/open-spod-shipping-api/)
+- [SPOD (Spreadconnect) Fulfillment REST Articles Stock API](https://apis.io/collections/spod/open-spod-stock-api/)
+- [SPOD (Spreadconnect) Fulfillment REST Articles Subscriptions API](https://apis.io/collections/spod/open-spod-subscriptions-api/)
 
-- [Documentation](https://rest.spod.com/docs/)
-- [API Reference](https://rest.spod.com/docs/)
-- [OpenAPI](openapi/spod-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/spod.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/spod.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Security (3)
 
-### SPOD Orders API
+Authentication, trust centre, and vulnerability disclosure.
 
-Place and manage print-on-demand orders. Create an order (simple single-request flow or a controlled create/update/confirm flow), retrieve or update order details, confirm an order for production, and attempt cancellation while it is still cancelable.
+- [Spod Authentication](https://apis.io/security/spod/spod-authentication/)
+- [Spod Domain Security](https://apis.io/security/spod/spod-domain-security/)
+- [Spod Vulnerability Disclosure](https://apis.io/security/spod/spod-vulnerability-disclosure/)
 
-- **Human URL:** [https://rest.spod.com/docs/](https://rest.spod.com/docs/)
-- **Base URL:** `https://rest.spod.com`
+#### Plans and pricing (1)
 
-#### Tags
+Published plans, tiers and prices.
 
-- Orders
-- Fulfillment
-- Checkout
+- [Spod Plans Pricing](https://apis.io/plans/spod/spod-plans-pricing/)
 
-#### Properties
+#### Rate limits (1)
 
-- [Documentation](https://rest.spod.com/docs/)
-- [API Reference](https://rest.spod.com/docs/)
-- [OpenAPI](openapi/spod-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/spod.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/spod.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published request limits.
 
-### SPOD Shipping API
+- [Spod Rate Limits](https://apis.io/rate-limits/spod/spod-rate-limits/)
 
-List the available shipping types for an order with their prices and delivery estimates, set the preferred shipping type on an order, and retrieve shipment records with tracking information once an order is dispatched from a US or EU facility.
+#### FinOps (1)
 
-- **Human URL:** [https://rest.spod.com/docs/](https://rest.spod.com/docs/)
-- **Base URL:** `https://rest.spod.com`
+What the API costs to run, by operation.
 
-#### Tags
+- [Spod Finops](https://apis.io/finops/spod/spod-finops/)
 
-- Shipping
-- Shipments
-- Tracking
+## Where to find this API
 
-#### Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- [Documentation](https://rest.spod.com/docs/)
-- [API Reference](https://rest.spod.com/docs/)
-- [OpenAPI](openapi/spod-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/spod.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/spod.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### SPOD Product Types API
-
-Browse the SPOD catalog of 250+ product types (article types) - blank products such as T-shirts, hoodies, and accessories. Retrieve a product type's sizes, colors, views, printable areas, and the configuration needed to build an article.
-
-- **Human URL:** [https://rest.spod.com/docs/](https://rest.spod.com/docs/)
-- **Base URL:** `https://rest.spod.com`
-
-#### Tags
-
-- Product Types
-- Article Types
-- Catalog
-
-#### Properties
-
-- [Documentation](https://rest.spod.com/docs/)
-- [API Reference](https://rest.spod.com/docs/)
-- [OpenAPI](openapi/spod-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/spod.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/spod.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### SPOD Stock API
-
-Check inventory availability across product variants. Retrieve stock for all variants or for a specific SKU so you can surface availability in your shop before an article is ordered.
-
-- **Human URL:** [https://rest.spod.com/docs/](https://rest.spod.com/docs/)
-- **Base URL:** `https://rest.spod.com`
-
-#### Tags
-
-- Stock
-- Inventory
-- Availability
-
-#### Properties
-
-- [Documentation](https://rest.spod.com/docs/)
-- [API Reference](https://rest.spod.com/docs/)
-- [OpenAPI](openapi/spod-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/spod.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/spod.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### SPOD Subscriptions and Webhooks API
-
-Register webhook subscriptions to be notified via POST about Article, Order, and Shipment state changes. List and delete subscriptions, verify authenticity with the `X-SPRD-SIGNATURE` SHA256 HMAC header, and use simulate endpoints to trigger test events. Notifications follow an at-least-once delivery model and must be acknowledged with a 202 status, a response within 8 seconds, and the payload `[accepted]`.
-
-- **Human URL:** [https://rest.spod.com/docs/](https://rest.spod.com/docs/)
-- **Base URL:** `https://rest.spod.com`
-
-#### Tags
-
-- Subscriptions
-- Webhooks
-- Events
-
-#### Properties
-
-- [Documentation](https://rest.spod.com/docs/)
-- [API Reference](https://rest.spod.com/docs/)
-- [OpenAPI](openapi/spod-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/spod.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/spod.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/SP0D)
-- [LinkedIn](https://www.linkedin.com/company/spod-spreadshirt-print-on-demand)
 - [Website](https://www.spod.com)
 - [Documentation](https://rest.spod.com/docs/)
-- [Plans](plans/spod-plans-pricing.yml)
-- [Rate Limits](rate-limits/spod-rate-limits.yml)
-- [Fin Ops](finops/spod-finops.yml)
+- [GitHub](https://github.com/SP0D)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 26.0** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 46.7 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 29.8 |
+| Access clarity | 5.3 |
+
+**Agent readiness 19.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 17.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/spod/](https://apis.io/providers/spod/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for SPOD: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/spod/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
